@@ -7,6 +7,7 @@ target 'flicks' do
 
   # Pods for flicks
   pod 'AFNetworking'
+  pod 'MBProgressHUD'
 
   target 'flicksTests' do
     inherit! :search_paths

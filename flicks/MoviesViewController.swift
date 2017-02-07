@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -23,6 +24,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         // Do any additional setup after loading the view.
 
+        let refreshControl = UIRefreshControl()
+        
+        // Network Request to pull movies
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        moviesNetworkRequest(refreshControl)
+        
+        // setup refreshControl
+        refreshControl.addTarget(self, action: #selector(moviesNetworkRequest(_:)), for: UIControlEvents.valueChanged)
+        self.tableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    func moviesNetworkRequest(_ refreshControl: UIRefreshControl) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -32,6 +45,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     self.movies = dataDictionary["results"] as? [NSDictionary]
                     self.tableView.reloadData()
+                    refreshControl.endRefreshing()
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
             }
         }
