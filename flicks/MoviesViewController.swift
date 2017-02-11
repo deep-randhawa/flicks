@@ -12,8 +12,10 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    // OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
+    // GLOBAL VARS
     var movies: [NSDictionary]?
     let baseURL = "http://image.tmdb.org/t/p/w500"
     
@@ -72,24 +74,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = self.movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
-        
-        let imageURL = URL(string: baseURL + posterPath)
-        
+        if let posterPath = movie["poster_path"] as? String {
+            let imageURL = URL(string: baseURL + posterPath)
+            cell.imageView?.setImageWith(imageURL!)
+            // TODO: Auto-update imageView when image is downloaded
+        }
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-        cell.imageView?.setImageWith(imageURL!)
         
         return cell
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let senderCell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: senderCell)
+        let movie = movies![indexPath!.row]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.movie = movie
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }
