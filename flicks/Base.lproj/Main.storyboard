@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="169" id="kZu-vX-ojQ" customClass="MovieCell" customModule="flicks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="167"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="169"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kZu-vX-ojQ" id="vdi-Al-weA">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="168"/>
@@ -128,7 +128,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hhH-kN-n5Z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p1B-vw-Sk6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p1B-vw-Sk6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tCx-7K-aCd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
