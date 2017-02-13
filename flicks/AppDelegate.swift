@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
-        print("hello world!")
         return true
     }
 

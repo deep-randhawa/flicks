@@ -83,6 +83,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
+        cell.selectionStyle = .blue
+        
         return cell
     }
     
